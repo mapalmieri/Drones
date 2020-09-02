@@ -1,0 +1,36 @@
+Linear_displacement: THEORY
+ 
+ BEGIN
+ 
+ N	:	{n:nat | n >= 3};
+ 
+
+
+ eps	: 	{eps:real | eps > 0 AND  eps < 1};
+ min	:	real ;
+ max	:	{n:posreal | n > min}	 ;
+ j	: VAR nat;
+ L	:  posreal =     (max-min)/(N-1);
+ i: VAR below[N]
+ y: VAR {y:posnat | y<N-1};
+ 
+initial(i:below(N)): real;
+
+next(x:[below(N)->real]):  [below(N)->real]= LAMBDA i:
+IF (i = 0) THEN min
+ELSE IF (i = N-1) THEN max
+ELSE eps*x(i-1) + (1-2*eps)*x(i) + eps*x(i+1)
+ENDIF
+ENDIF
+
+kth_step(K:nat):RECURSIVE[below(N)->real]= 
+IF (K=0) THEN
+initial
+ELSE
+next(kth_step(K-1))     
+ENDIF
+MEASURE K
+
+
+
+END Linear_displacement

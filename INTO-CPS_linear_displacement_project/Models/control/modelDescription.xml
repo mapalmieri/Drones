@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fmiModelDescription 	fmiVersion="2.0"
+						modelName="drone"
+						guid="{abb4bff1-d423-4e02-90d9-011f519869ff}"
+						description=""
+						author="..author name.."
+						version="Version 1"
+						copyright=""
+						license="PVS License"
+						generationTool="PVSio-web"
+						variableNamingConvention="flat"
+						numberOfEventIndicators="0">
+	<CoSimulation 	modelIdentifier="drone"
+					needsExecutionTool="false"
+					canHandleVariableCommunicationStepSize="true"
+					canInterpolateInputs="false"
+					maxOutputDerivativeOrder="0"
+					canRunAsynchronuously="false"
+					canBeInstantiatedOnlyOncePerProcess="false"
+					canNotUseMemoryManagementFunctions="true"
+					canGetAndSetFMUstate="false"
+					canSerializeFMUstate="false"
+					providesDirectionalDerivative="false">
+		</CoSimulation>
+	<LogCategories>
+		<Category name="logAll" />
+		<Category name="logError" />
+		<Category name="logFmiCall" />
+		<Category name="Protocol" />
+		<Category name="Error" />
+	</LogCategories>
+
+	<ModelVariables>
+		<ScalarVariable name="C_phi" valueReference="1" causality="parameter" variability="fixed"  initial="exact" ><Real start="939.627586" /></ScalarVariable>
+    
+		<ScalarVariable name="C_theta" valueReference="2" causality="parameter" variability="fixed"  initial="exact" ><Real start="939.627586" /></ScalarVariable>
+    
+		<ScalarVariable name="C_z" valueReference="3" causality="parameter" variability="fixed"  initial="exact" ><Real start="6.264183905" /></ScalarVariable>
+    
+		<ScalarVariable name="current_phi" valueReference="4" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="current_psi" valueReference="5" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="current_theta" valueReference="6" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="current_x" valueReference="7" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="current_y" valueReference="8" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="current_z" valueReference="9" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="G" valueReference="10" causality="parameter" variability="fixed"  initial="exact" ><Real start="9.81" /></ScalarVariable>
+    
+		<ScalarVariable name="Ix" valueReference="11" causality="parameter" variability="fixed"  initial="exact" ><Real start="0.001" /></ScalarVariable>
+    
+		<ScalarVariable name="Iy" valueReference="12" causality="parameter" variability="fixed"  initial="exact" ><Real start="0.001" /></ScalarVariable>
+    
+		<ScalarVariable name="Iz" valueReference="13" causality="parameter" variability="fixed"  initial="exact" ><Real start="0.001" /></ScalarVariable>
+    
+		<ScalarVariable name="Kf" valueReference="14" causality="parameter" variability="fixed"  initial="exact" ><Real start="1" /></ScalarVariable>
+    
+		<ScalarVariable name="Km" valueReference="15" causality="parameter" variability="fixed"  initial="exact" ><Real start="1" /></ScalarVariable>
+    
+		<ScalarVariable name="L" valueReference="16" causality="parameter" variability="fixed"  initial="exact" ><Real start="0.3" /></ScalarVariable>
+    
+		<ScalarVariable name="La" valueReference="17" causality="parameter" variability="fixed"  initial="exact" ><Real start="4" /></ScalarVariable>
+    
+		<ScalarVariable name="Lp" valueReference="18" causality="parameter" variability="fixed"  initial="exact" ><Real start="0.4" /></ScalarVariable>
+    
+		<ScalarVariable name="M" valueReference="19" causality="parameter" variability="fixed"  initial="exact" ><Real start="1" /></ScalarVariable>
+    
+		<ScalarVariable name="phi_c" valueReference="20" causality="parameter" variability="fixed"  initial="exact" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="psi_d" valueReference="21" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="theta_c" valueReference="22" causality="parameter" variability="fixed"  initial="exact" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="vel_phi" valueReference="23" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="vel_psi" valueReference="24" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="vel_theta" valueReference="25" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="vel_x" valueReference="26" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="vel_y" valueReference="27" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="vel_z" valueReference="28" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="w_1" valueReference="29" causality="output" variability="continuous" ><Real  /></ScalarVariable>
+    
+		<ScalarVariable name="w_2" valueReference="30" causality="output" variability="continuous" ><Real  /></ScalarVariable>
+    
+		<ScalarVariable name="w_3" valueReference="31" causality="output" variability="continuous" ><Real  /></ScalarVariable>
+    
+		<ScalarVariable name="w_4" valueReference="32" causality="output" variability="continuous" ><Real  /></ScalarVariable>
+    
+		<ScalarVariable name="w_phi" valueReference="33" causality="parameter" variability="fixed"  initial="exact" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="w_psi" valueReference="34" causality="parameter" variability="fixed"  initial="exact" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="w_theta" valueReference="35" causality="parameter" variability="fixed"  initial="exact" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="w_z" valueReference="36" causality="parameter" variability="fixed"  initial="exact" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="x_d" valueReference="37" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="y_d" valueReference="38" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+		<ScalarVariable name="z_d" valueReference="39" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    </ModelVariables>
+
+	<ModelStructure>
+	<Outputs>
+			<Unknown index="29"  dependencies=""/>
+            
+			<Unknown index="30"  dependencies=""/>
+            
+			<Unknown index="31"  dependencies=""/>
+            
+			<Unknown index="32"  dependencies=""/>
+            
+	</Outputs>
+
+	</ModelStructure>
+</fmiModelDescription>

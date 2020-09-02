@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fmiModelDescription 	fmiVersion="2.0"
+						modelName="VisualDrones"
+						guid="{abb4bff1-d423-4e02-90d9-011f519869ff}"
+						description=""
+						author="pvsioweb"
+						version="Version 1"
+						copyright=""
+						license="PVS License"
+						generationTool="PVSio-web"
+						variableNamingConvention="flat"
+						numberOfEventIndicators="0">
+	<CoSimulation 	modelIdentifier="VisualDrones"
+					needsExecutionTool="false"
+					canHandleVariableCommunicationStepSize="false"
+					canInterpolateInputs="false"
+					maxOutputDerivativeOrder="0"
+					canRunAsynchronuously="false"
+					canBeInstantiatedOnlyOncePerProcess="false"
+					canNotUseMemoryManagementFunctions="true"
+					canGetAndSetFMUstate="false"
+					canSerializeFMUstate="false"
+					providesDirectionalDerivative="false">
+		</CoSimulation>
+	<LogCategories>
+		<Category name="logAll" />
+		<Category name="logError" />
+		<Category name="logFmiCall" />
+		<Category name="Protocol" />
+		<Category name="Error" />
+	</LogCategories>
+
+	<ModelVariables>
+	<ScalarVariable name="x1" valueReference="1" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="z1" valueReference="2" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="x2" valueReference="3" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="z2" valueReference="4" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="x3" valueReference="5" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="z3" valueReference="6" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="x4" valueReference="7" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="z4" valueReference="8" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="x5" valueReference="9" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="z5" valueReference="10" causality="input" variability="continuous" ><Real start="0" /></ScalarVariable>
+    
+	<ScalarVariable name="internal_State" valueReference="11" causality="output" variability="discrete" ><String  /></ScalarVariable>
+	</ModelVariables>
+	<ModelStructure>
+	<Outputs>
+            
+            
+            <Unknown index="11"  dependencies=""/>
+	</Outputs>
+
+	</ModelStructure>
+</fmiModelDescription>

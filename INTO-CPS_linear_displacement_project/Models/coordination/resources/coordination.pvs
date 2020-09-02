@@ -1,0 +1,64 @@
+coordination : THEORY
+BEGIN
+IMPORTING stdmath
+IMPORTING Linear_displacement_projection[5,1/4,0,10]
+
+State : TYPE = [#
+		%input		
+		x_prec: real,
+		x_foll: real,
+		y_prec: real,
+		y_foll: real,
+		x_actual: real,		
+		%output
+		id: real,
+		delayMax: real,
+		delay: real,
+		x_d: real,
+		y_d: real,
+		z_d: real
+		
+		#]
+
+
+
+
+
+
+  init: State =
+      (# 
+		x_d:= 0,  % ripensare a questo 0
+		y_d:= 0,
+		z_d:= 1,
+		x_actual := 0,
+		id:= 4,
+		delayMax:= 19,
+		delay:= 19,
+		x_prec:= 0,
+		y_prec:= 0,
+		y_foll:= 0,
+		x_foll:= 0
+		 
+	#)
+
+
+
+coordination(s:State) : State = s 
+WITH [
+				 
+				 x_d := COND
+							delay(s) = delayMax(s) -> pnext(x_prec(s),x_d(s),x_foll(s),id(s)),%1/3*(x_prec(s)+x_actual(s)+x_foll(s)),
+							delay(s) < delayMax(s) -> x_d(s)
+						ENDCOND,
+				%y_d := COND
+				%			delay(s) = delayMax(s) -> pnext(y_prec(s),y_d(s),y_foll(s),id(s)),
+				%			delay(s) < delayMax(s) -> y_d(s)
+				%		ENDCOND,
+			   delay := COND
+							delay(s) = delayMax(s) -> 0,
+							delay(s) < delayMax(s) -> delay(s)+1
+						ENDCOND
+]
+tick(s:State) : State = coordination(s)
+
+END coordination

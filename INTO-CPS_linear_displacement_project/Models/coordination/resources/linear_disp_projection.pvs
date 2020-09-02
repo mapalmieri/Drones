@@ -1,0 +1,26 @@
+Linear_displacement_projection[N	:	{n:nat | n >= 3}		,
+ eps	: 	{eps:real | eps > 0 AND  eps < 1},
+ min	:	posreal ,
+ max	:	{n:posreal | n > min}	 ]: THEORY
+BEGIN
+IMPORTING Linear_displacement
+
+i	  :	VAR {i:nat | i<N};
+
+pnext(a,b,c : real, i : {i:nat | i<N}): real = IF (i = 0) THEN min
+ELSE IF (i = N-1) THEN max
+ELSE eps*a + (1-2*eps)*b + eps*c
+ENDIF
+ENDIF
+
+projection_1: THEOREM
+FORALL (x:[below(N)->real]): FORALL (i: {i:posnat | i<N-1}): next(x)(i) = pnext(x(i-1),x(i),x(i+1),i)
+
+projection_2: THEOREM
+FORALL (x:[below(N)->real]): i=0 IMPLIES  next(x)(i) = pnext(0,x(i),x(i+1),i)
+
+projection_3: THEOREM
+FORALL (x:[below(N)->real]): i=N-1 IMPLIES next(x)(i) = pnext(x(i-1),x(i),0,i)
+
+
+END Linear_displacement_projection

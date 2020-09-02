@@ -1,0 +1,43 @@
+VisualDrones : THEORY
+BEGIN
+
+
+State : TYPE = [#
+		x1: real,
+		z1: real,
+		x2: real,
+		z2: real,
+		x3: real,
+		z3: real,
+		x4: real,
+		z4: real,
+		x5: real,
+		z5: real
+		#]
+
+
+
+
+
+
+  init: State =
+      (# 
+		x1:= 0,
+		z1:= 0,
+		x2:= 1,
+		z2:= 0,
+		x3:= 2,
+		z3:= 0,
+		x4:= 5,
+		z4:= 0,
+		x5:= 10,
+		z5:= 0
+		 
+	#)
+
+
+
+
+tick(s:State) : State = s
+
+END VisualDrones
