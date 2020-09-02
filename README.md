@@ -10,13 +10,13 @@ Repository of the UAV FMI co-simulation with INTO-CPS and PVS formal prover
 # Instructions for co-simulation
 
  1. Copy the PVS folder `pvs-6.0-ix86_64-Linux-allegro` in the following directories:
-    1.1 models/coordination/resources/
-    1.2 models/VisualDrones/resources/
-    1.3 FMUS/coordination1.fmu{/resources}
-    1.4 FMUS/coordination2.fmu{/resources}
-    1.5 FMUS/coordination3.fmu{/resources}
-    1.6 FMUS/coordination4.fmu{/resources}
-    1.7 FMUS/coordination5.fmu{/resources}
+    1. models/coordination/resources/
+    2. models/VisualDrones/resources/
+    3. FMUS/coordination1.fmu{/resources}
+    4. FMUS/coordination2.fmu{/resources}
+    5. FMUS/coordination3.fmu{/resources}
+    6. FMUS/coordination4.fmu{/resources}
+    7. FMUS/coordination5.fmu{/resources}
 
 ...these last 5 directories are within the zip file of the fmu.
 
