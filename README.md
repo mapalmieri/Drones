@@ -28,4 +28,18 @@ Repository of the UAV FMI co-simulation with INTO-CPS and PVS formal prover
 
  5. Launch the COE and then start the simulation
 
- 6. During the simulation open the `GUI/index.html` page in a browser ( Chrome or Firefox).  
+ 6. During the simulation open the `GUI/index.html` page in a browser (Chrome or Firefox).  
+
+# Instructions for PVS proof
+
+ 0. Follow the instruction for the binaries installation of PVS that can be found [here](http://pvs.csl.sri.com/download.shtml)
+
+ 1. Launch the PVS application
+
+ 2. Type `alt+x` to enter the minibuffer command and then type `change-context`. Navigate to the folder `linear_displacement_PVS_proof` and press `enter`
+
+ 3. Open the theory `linear_disp`
+
+ 4. Type `alt+x` to enter the minibuffer command and type `prove-importchain`
+
+
