@@ -12,7 +12,8 @@ State : TYPE = [#
 		x4: real,
 		z4: real,
 		x5: real,
-		z5: real
+		z5: real,
+		time: real
 		#]
 
 
@@ -24,20 +25,21 @@ State : TYPE = [#
       (# 
 		x1:= 0,
 		z1:= 0,
-		x2:= 1,
+		x2:= 10,
 		z2:= 0,
-		x3:= 2,
+		x3:= 20,
 		z3:= 0,
-		x4:= 5,
+		x4:= 30,
 		z4:= 0,
 		x5:= 10,
-		z5:= 0
+		z5:= 0,
+		time:= 0
 		 
 	#)
 
 
 
 
-tick(s:State) : State = s
+tick(s:State) : State = s WITH [time:= time(s)+0.05]
 
 END VisualDrones

@@ -5,8 +5,9 @@ require.config({
 
 require([
     "widgets/ButtonActionsQueue",
+    "widgets/BasicDisplay",
     "websockets/FMIClient"
-], function (ButtonActionsQueue, FMIClient) {
+], function (ButtonActionsQueue, BasicDisplay, FMIClient) {
     "use strict";
 
     var PVSioStateParser = require("util/PVSioStateParser");
@@ -16,6 +17,16 @@ require([
     system.green_drone = d3.select("#green_drone");
     system.red_drone = d3.select("#red_drone");
     system.pink_drone = d3.select("#pink_drone");
+    
+    system.timer = new BasicDisplay("timer",{
+		
+		left: 250, 
+		width: 175, 
+		top: 0 
+	},{
+		 backgroundColor: "gray", 
+	},{parent:"content"});
+	system.timer.render(); 
     
     system.collision_detect = false;
 
@@ -32,23 +43,24 @@ require([
         // don't use the Navigator widget, just move the drones with the following command.
         			
 			
-			system.blue_drone.style("left", 100+pos.blue_drone.x*100 + "px").style("top", 400-pos.blue_drone.y*100 + "px").style("transition-duration",250+"ms");
-			system.red_drone.style("left", 100+pos.red_drone.x*100 + "px").style("top", 400-pos.red_drone.y*100 + "px").style("transition-duration",250+"ms");
-			system.yellow_drone.style("left", 100+pos.yellow_drone.x*100 + "px").style("top", 400-pos.yellow_drone.y*100 + "px").style("transition-duration",250+"ms");
-			system.green_drone.style("left", 100+pos.green_drone.x*100 + "px").style("top", 400-pos.green_drone.y*100 + "px").style("transition-duration",250+"ms");
-			system.pink_drone.style("left", 100+pos.pink_drone.x*100 + "px").style("top", 400-pos.pink_drone.y*100 + "px").style("transition-duration",250+"ms");
+			system.blue_drone.style("left", 30+pos.blue_drone.x*79.5/5 + "px").style("top", 700-pos.blue_drone.y*94/2 + "px").style("transition-duration",250+"ms");
+			system.red_drone.style("left", 30+pos.red_drone.x*79.5/5 + "px").style("top", 700-pos.red_drone.y*94/2 + "px").style("transition-duration",250+"ms");
+			system.yellow_drone.style("left", 30+pos.yellow_drone.x*79.5/5 + "px").style("top", 700-pos.yellow_drone.y*94/2 + "px").style("transition-duration",250+"ms");
+			system.green_drone.style("left", 30+pos.green_drone.x*79.5/5 + "px").style("top", 700-pos.green_drone.y*94/2 + "px").style("transition-duration",250+"ms");
+			system.pink_drone.style("left", 30+pos.pink_drone.x*79.5/5 + "px").style("top", 700-pos.pink_drone.y*94/2 + "px").style("transition-duration",250+"ms");
 		
+			system.timer.render(PVSioStateParser.evaluate(state.time));
 		//assume drone start far enough
-		if (system.collision_detect){
-			system.green_drone.style("transform", "rotate(130deg)").style("top", 600+"px").style("transition-duration",2000+"ms");
-			system.yellow_drone.style("transform", "rotate(210deg)").style("top", 600+"px").style("transition-duration",2000+"ms");
+	/*	if (system.collision_detect){
+			system.green_drone.style("transform", "rotate(130deg)").style("top", 700+"px").style("transition-duration",2000+"ms");
+			system.yellow_drone.style("transform", "rotate(210deg)").style("top", 700+"px").style("transition-duration",2000+"ms");
 			stop_tick();
 		}
 		// 3 drones moving, only the middle one (green) can collide
 		else if(((Math.abs(pos.green_drone.x-pos.yellow_drone.x) < 0.7) || (Math.abs(pos.green_drone.x-pos.red_drone.x) < 0.7)) && (Math.abs(pos.green_drone.y-pos.yellow_drone.y) < 0.5)){ 
 		system.collision_detect=true;
 		}
-		
+		*/
 		
 		console.log(pos);
     }
@@ -60,7 +72,7 @@ require([
         function start_tick(interval) {
             if (!tick) {
                 tick = setInterval(function () {
-                    ButtonActionsQueue.getInstance().queueGUIAction("tick", onMessageReceived);
+                    ButtonActionsQueue.getInstance().queueGUIAction("refresh", onMessageReceived);
                 }, interval);
             }
         }
@@ -70,5 +82,5 @@ require([
                 tick = null;
             }
         }
-        start_tick(250);
+        start_tick(125);
 });
