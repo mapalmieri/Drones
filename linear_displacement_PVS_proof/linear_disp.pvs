@@ -1,0 +1,91 @@
+Linear_displacement: THEORY
+ BEGIN
+ 
+ N	:	{n:nat | n >= 3};
+ eps	: 	{eps:real | eps > 0 AND  eps < 1};
+ min	:	real ;
+ max	:	{n:posreal | n > min}	 ;
+ j	: VAR nat;
+ L	:  posreal =     (max-min)/(N-1);
+ i: VAR below[N]
+ y: VAR {y:posnat | y<N-1};
+ 
+initial(i:below(N)): real;
+init_ax: AXIOM
+FORALL (i:below(N-1)): initial(i) < initial(i+1) ;
+
+init_ax_1: AXIOM
+initial(0) = min AND initial(N-1) = max ;
+
+init_ax_2: AXIOM
+FORALL (i:below(N)): initial(i) <= L*i;
+
+next(x:[below(N)->real]):  [below(N)->real]= LAMBDA i:
+IF (i = 0) THEN min
+ELSE IF (i = N-1) THEN max
+ELSE eps*x(i-1) + (1-2*eps)*x(i) + eps*x(i+1)
+ENDIF
+ENDIF
+
+kth_step(K:nat):RECURSIVE[below(N)->real]= 
+IF (K=0) THEN
+initial
+ELSE
+next(kth_step(K-1))     
+ENDIF
+MEASURE K
+
+lem_max : LEMMA % uses init_ax_1
+ FORALL (k: nat): kth_step(k)(N-1)=max;
+
+lem_min : LEMMA % uses init_ax_1
+ FORALL (k: nat): kth_step(k)(0)=min;
+
+lem_1_support_1: LEMMA
+kth_step(j)(N-2) < max IMPLIES EXISTS (k1: posreal): max=kth_step(j)(N-2)+k1;
+
+lem_1_support_2: LEMMA
+ kth_step(j)(N - 3) < kth_step(j)(N-2) IMPLIES EXISTS (k2: posreal): kth_step(j)(N-2)=kth_step(j)(N - 3)+k2;
+
+lem_1_support_3: LEMMA
+ FORALL (k1 : posreal): k1-k1/eps < 0
+
+lem_1: LEMMA % uses lem_1_support_1,lem_1_support_2,lem_1_support_3
+kth_step(j)(N-2) < max AND
+kth_step(j)(N - 3) < kth_step(j)(N-2)
+IMPLIES
+kth_step(j)(N - 2) - 2 * (kth_step(j)(N - 2) * eps) + eps * kth_step(j)(N - 3) + eps * max < max
+
+lem_2_support_1: LEMMA
+min < kth_step(j)(1) IMPLIES EXISTS (k1 : posreal): kth_step(j)(1)=min +k1;
+
+lem_2_support_2: LEMMA
+ kth_step(j)(1) <  kth_step(j)(2) IMPLIES EXISTS (k2 : posreal):  kth_step(j)(2)= kth_step(j)(1)+k2;
+
+lem_2_support_3: LEMMA
+FORALL (k1:posreal): eps * k1 - k1<0;
+
+lem_2: LEMMA %uses lem_2_support_1,lem_2_support_2,lem_2_support_3
+min < kth_step(j)(1)  AND
+kth_step(j)(1) <  kth_step(j)(2)
+IMPLIES
+min < kth_step(j)(1) - 2 * (kth_step(j)(1) * eps) + eps * min + eps * kth_step(j)(2)
+
+% a < a' <b
+lem_4: LEMMA
+i<N-2 AND
+i/=0 AND
+%a' < b
+kth_step(j)(i-1)+ kth_step(j)(i+1)*(1/eps -3) <  kth_step(j)(i+2)+ kth_step(j)(i+1)*(1/eps -3) AND
+%a<a'
+kth_step(j)(i-1)+ kth_step(j)(i)*(1/eps -3) <= kth_step(j)(i-1)+ kth_step(j)(i+1)*(1/eps -3) 
+IMPLIES
+%a<b
+kth_step(j)(i-1)+ kth_step(j)(i)*(1/eps -3) <  kth_step(j)(i+2)+ kth_step(j)(i+1)*(1/eps -3)
+
+ 
+no_cross: THEOREM %uses init_ax,lem_2,lem_min,lem_1,lem_max,lem_4,
+eps<=1/3 IMPLIES
+        FORALL (k: nat):FORALL (i:{ n:nat | n < N-1}): kth_step(k)(i) < kth_step(k)(i+1)
+
+END Linear_displacement
